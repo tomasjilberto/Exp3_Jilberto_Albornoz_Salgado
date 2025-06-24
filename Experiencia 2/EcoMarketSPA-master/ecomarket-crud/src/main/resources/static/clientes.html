@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Clientes</title>
+</head>
+<body>
+  <h1>Clientes Registrados</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="tablaClientes"></tbody>
+  </table>
+
+  <script>
+    fetch('http://localhost:8080/api/clientes')
+      .then(res => res.json())
+      .then(clientes => {
+        const tabla = document.getElementById('tablaClientes');
+        clientes.forEach(c => {
+          tabla.innerHTML += `<tr>
+                                <td>${c.id}</td>
+                                <td>${c.nombre}</td>
+                                <td>${c.edad}</td>
+                                <td>${c.gmail}</td>
+                              </tr>`;
+        });
+      })
+      .catch(err => console.error('Error cargando clientes:', err));
+  </script>
+</body>
+</html>
