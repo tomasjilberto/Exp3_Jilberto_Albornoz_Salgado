@@ -57,6 +57,22 @@ public class ClienteServiceImplTest {
 
         assertEquals("Juan Jara", resultado.get().getNombre());
     }
+    @Test
+    public void testModificarCliente() {
+    Cliente clienteExistente = list.get(0); 
+    Cliente clienteModificado = new Cliente(1L, "Tomas Actualizado", "tomas.actualizado@gmail.com", 95);
+    when(repository.findById(1L)).thenReturn(Optional.of(clienteExistente));
+    when(repository.save(clienteExistente)).thenReturn(clienteExistente);
+
+    Cliente resultado = service.modificar(1L, clienteModificado);
+
+    assertEquals("Tomas Actualizado", resultado.getNombre());
+    assertEquals("tomas.actualizado@gmail.com", resultado.getGmail());
+    assertEquals(95, resultado.getEdad());
+
+    verify(repository, times(1)).findById(1L);
+    verify(repository, times(1)).save(clienteExistente);
+}
 
     public void chargeCliente(){
         Cliente cliente1 = new Cliente(Long.valueOf(1), "Tomas Jilberto","tomas.jilberto@gmail.com",90);

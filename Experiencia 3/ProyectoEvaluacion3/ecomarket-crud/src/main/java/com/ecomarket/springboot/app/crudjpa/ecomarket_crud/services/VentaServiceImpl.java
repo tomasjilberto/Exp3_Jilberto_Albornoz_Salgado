@@ -42,6 +42,21 @@ public class VentaServiceImpl implements  VentaService{
         });
         return ventaOptional;
     }
+    @Override
+    @Transactional
+    public Venta modificar(Long id, Venta ventaNueva) {
+    Optional<Venta> ventaOptional = repository.findById(id);
+    if (ventaOptional.isPresent()) {
+        Venta ventaExistente = ventaOptional.get();
+
+        ventaExistente.setFecha(ventaNueva.getFecha());
+        ventaExistente.setTotal(ventaNueva.getTotal());
+
+        return repository.save(ventaExistente);
+    } else {
+        return null; 
+    }
+}
 
 
 }

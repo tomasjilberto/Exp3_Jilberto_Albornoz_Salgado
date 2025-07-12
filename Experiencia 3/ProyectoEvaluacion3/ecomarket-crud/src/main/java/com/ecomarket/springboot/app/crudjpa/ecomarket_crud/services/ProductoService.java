@@ -15,5 +15,6 @@ public interface ProductoService {
     Producto save (Producto unProducto);
 
     Optional<Producto> delete (Producto unProducto);
+    Producto modificar(Long id, Producto producto);
 
 }

@@ -44,5 +44,19 @@ public class ProductoServiceImpl implements ProductoService{
         });
         return productoOptional;
     }
+    @Override
+    @Transactional
+    public Producto modificar(Long id, Producto productoNuevo) {
+    Optional<Producto> productoOptional = repository.findById(id);
+    if (productoOptional.isPresent()) {
+        Producto productoExistente = productoOptional.get();
+        productoExistente.setNombre(productoNuevo.getNombre());
+        productoExistente.setDescripcion(productoNuevo.getDescripcion());
+        productoExistente.setPrecio(productoNuevo.getPrecio());
+        return repository.save(productoExistente);
+    } else {
+        return null; 
+    }
+}
 
 }

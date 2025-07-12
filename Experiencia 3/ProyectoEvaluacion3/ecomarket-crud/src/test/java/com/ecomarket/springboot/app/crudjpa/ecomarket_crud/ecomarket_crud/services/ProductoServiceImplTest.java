@@ -59,6 +59,28 @@ public class ProductoServiceImplTest {
         assertEquals("de Bambú", resultado.get().getDescripcion());
         assertEquals(4000, resultado.get().getPrecio());
     }
+    @Test
+    public void testModificarProducto() {
+        Producto productoExistente = list.get(0); // Miel Organica
+
+        Producto productoModificado = new Producto();
+        productoModificado.setId(1L);
+        productoModificado.setNombre("Miel Premium");
+        productoModificado.setDescripcion("muy dulce");
+        productoModificado.setPrecio(7000);
+
+        when(repository.findById(1L)).thenReturn(Optional.of(productoExistente));
+        when(repository.save(productoExistente)).thenReturn(productoExistente);
+
+        Producto resultado = service.modificar(1L, productoModificado);
+
+        assertEquals("Miel Premium", resultado.getNombre());
+        assertEquals("muy dulce", resultado.getDescripcion());
+        assertEquals(7000, resultado.getPrecio());
+
+        verify(repository, times(1)).findById(1L);
+        verify(repository, times(1)).save(productoExistente);
+    }
 
 
     ///CARGA DATOS PARA PODER TESTEAR

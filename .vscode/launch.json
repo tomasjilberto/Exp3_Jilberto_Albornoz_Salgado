@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EcomarketCrudApplication<com.ecomarket.springboot.app.crudjpa-ecomarket-crud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ecomarket.springboot.app.crudjpa.ecomarket_crud.EcomarketCrudApplication",
+            "projectName": "com.ecomarket.springboot.app.crudjpa-ecomarket-crud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
