@@ -14,5 +14,6 @@ public interface ClienteService {
     Cliente save(Cliente unCliente);
 
     Optional<Cliente> delete (Cliente unCliente);
+    Cliente modificar(Long id, Cliente cliente);
 
 }

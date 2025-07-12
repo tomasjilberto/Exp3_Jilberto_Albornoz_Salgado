@@ -60,6 +60,26 @@ public class VentaServiceImplTest {
         assertEquals("31/04/2025", resultado.get().getFecha());
         assertEquals(10000, resultado.get().getTotal());
     }
+    @Test
+    public void testModificarVenta() {
+    Venta ventaExistente = list.get(0); // 22/06/2025
+
+    Venta ventaModificada = new Venta();
+    ventaModificada.setId(1L);
+    ventaModificada.setFecha("25/06/2025");
+    ventaModificada.setTotal(9500000);
+
+    when(repository.findById(1L)).thenReturn(Optional.of(ventaExistente));
+    when(repository.save(ventaExistente)).thenReturn(ventaExistente);
+
+    Venta resultado = service.modificar(1L, ventaModificada);
+
+    assertEquals("25/06/2025", resultado.getFecha());
+    assertEquals(9500000, resultado.getTotal());
+
+    verify(repository, times(1)).findById(1L);
+    verify(repository, times(1)).save(ventaExistente);
+    }
 
 
     public void chargeVenta(){

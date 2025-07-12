@@ -15,5 +15,6 @@ public interface VentaService {
     Venta save (Venta unaVenta);
 
     Optional<Venta> delete (Venta unaVenta);
+    Venta modificar(Long id, Venta venta);
 
 }

@@ -43,6 +43,23 @@ public class ClienteServiceImpl  implements ClienteService {
         });
         return clienteOptional;
     }
+    @Override
+    @Transactional 
+    public Cliente modificar(Long id, Cliente clienteNuevo) {
+    Optional<Cliente> clienteOptional = repository.findById(id);
+    if (clienteOptional.isPresent()) {
+        Cliente clienteExistente = clienteOptional.get();
+        clienteExistente.setNombre(clienteNuevo.getNombre());
+        clienteExistente.setGmail(clienteNuevo.getGmail());
+        clienteExistente.setEdad(clienteNuevo.getEdad());
+
+        return repository.save(clienteExistente);
+    } else {
+        return null; 
+    }
+    }
+    
+
 
 
 
